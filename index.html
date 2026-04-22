@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 Okinawa Trip</title>
+  <style>
+    :root{
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --line:#e2e8f0;
+      --text:#0f172a;
+      --muted:#64748b;
+      --accent:#0f172a;
+      --sky:#e0f2fe;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    .hero{
+      background:linear-gradient(135deg,#e0f2fe 0%,#ffffff 45%,#eff6ff 100%);
+      border-bottom:1px solid var(--line);
+    }
+    .container{max-width:1120px;margin:0 auto;padding:24px}
+    .hero .container{padding-top:48px;padding-bottom:36px}
+    .eyebrow{
+      font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#0369a1;
+    }
+    h1{font-size:56px;line-height:1.05;margin:8px 0 12px}
+    .subtitle{max-width:780px;color:var(--muted);font-size:18px}
+    .tabbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+    .tab{
+      border:1px solid var(--line);background:#fff;color:#334155;padding:10px 16px;border-radius:999px;
+      cursor:pointer;font-size:14px;font-weight:600;
+    }
+    .tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .grid{display:grid;gap:20px}
+    .info-grid{grid-template-columns:2fr 1fr}
+    .card{
+      background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;
+      box-shadow:0 1px 2px rgba(15,23,42,.04);
+    }
+    .section{margin-top:24px}
+    .section.hidden{display:none}
+    .badge{
+      display:inline-block;background:var(--sky);color:#0369a1;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700
+    }
+    .flight-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+    .flight-box{border:1px solid var(--line);border-radius:20px;padding:18px}
+    .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+    .mini{background:#f8fafc;border-radius:16px;padding:12px;font-size:14px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .chip{background:#f1f5f9;border-radius:999px;padding:7px 11px;font-size:13px;color:#475569}
+    .muted{color:var(--muted)}
+    .day-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;flex-wrap:wrap}
+    .day-title small{
+      display:block;color:#0369a1;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase
+    }
+    .day-title h2{margin:4px 0 0;font-size:40px;line-height:1.1}
+    .note-bar{
+      margin-top:18px;background:#f8fafc;border-radius:18px;padding:14px 16px;color:#475569;font-size:14px
+    }
+    .timeline{position:relative;margin:24px 0 0 8px;padding-left:28px;border-left:2px solid var(--line)}
+    .item{position:relative;margin-bottom:18px}
+    .dot{
+      position:absolute;left:-37px;top:14px;width:14px;height:14px;border-radius:50%;
+      background:#0ea5e9;border:3px solid #fff;box-shadow:0 0 0 1px rgba(148,163,184,.35)
+    }
+    .item-card{border:1px solid var(--line);border-radius:20px;padding:16px 18px;background:#fff}
+    .row{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+    .time{font-size:24px;font-weight:800}
+    .type{display:inline-block;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700;margin-left:8px}
+    .交通{background:#e0f2fe;color:#0369a1}
+    .美食{background:#fef3c7;color:#b45309}
+    .景點{background:#dcfce7;color:#15803d}
+    .購物{background:#fae8ff;color:#a21caf}
+    .住宿{background:#ede9fe;color:#7c3aed}
+    .預約{background:#ffe4e6;color:#be123c}
+    .順遊{background:#cffafe;color:#0f766e}
+    .彈性{background:#e2e8f0;color:#475569}
+    .map-btn{
+      display:inline-block;background:#0f172a;color:#fff;text-decoration:none;padding:10px 14px;border-radius:16px;
+      font-size:14px;font-weight:700;
+    }
+    .meta{margin-top:4px;color:#475569}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .tag{padding:6px 10px;border-radius:999px;font-size:13px}
+    .drive{background:#eff6ff;color:#1d4ed8}
+    .stay{background:#fffbeb;color:#b45309}
+    .extra{background:#ecfdf5;color:#047857}
+    ul.clean{margin:12px 0 0;padding-left:18px}
+    @media (max-width: 900px){
+      .info-grid,.flight-grid,.mini-grid{grid-template-columns:1fr}
+      h1{font-size:42px}
+      .day-title h2{font-size:32px}
+      .container{padding:18px}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="eyebrow">2026 Okinawa Trip</div>
+      <h1>OKINAWA</h1>
+      <div class="subtitle">
+        升級成完整旅遊網站版本：保留原本內容，加入每日時間軸、Google Maps 連結，以及每段大致交通時間，方便直接照著跑。
+      </div>
+      <div class="tabbar">
+        <button class="tab active" data-target="info">ℹ️ 資訊</button>
+        <button class="tab" data-target="day1">Day 1</button>
+        <button class="tab" data-target="day2">Day 2</button>
+        <button class="tab" data-target="day3">Day 3</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="info" class="section">
+      <div class="grid info-grid">
+        <div class="card">
+          <div class="row">
+            <div>
+              <h2 style="margin:0">行前資訊</h2>
+              <div class="muted" style="font-size:14px">航班、住宿與旅行重點</div>
+            </div>
+            <span class="badge">06/04 - 06/06</span>
+          </div>
+
+          <div class="flight-grid">
+            <div class="flight-box">
+              <div class="row">
+                <div>
+                  <div class="muted" style="font-size:14px">航班</div>
+                  <div style="font-size:18px;font-weight:700">台北桃園 → 沖繩那霸</div>
+                </div>
+                <span class="badge" style="background:#0f172a;color:#fff">CI120</span>
+              </div>
+              <div class="mini-grid">
+                <div class="mini">
+                  <div class="muted">出發</div>
+                  <div style="font-weight:700;margin-top:4px">2026/06/04 08:00</div>
+                  <div>桃園機場 T2</div>
+                </div>
+                <div class="mini">
+                  <div class="muted">抵達</div>
+                  <div style="font-weight:700;margin-top:4px">2026/06/04 10:45</div>
+                  <div>那霸機場 T1</div>
+                </div>
+              </div>
+              <div class="chips">
+                <span class="chip">⏱️ 1 小時 45 分</span>
+                <span class="chip">🧳 1PC</span>
+                <span class="chip">✅ 建議 06:00 前抵達機場</span>
+              </div>
+            </div>
+
+            <div class="flight-box">
+              <div class="row">
+                <div>
+                  <div class="muted" style="font-size:14px">航班</div>
+                  <div style="font-size:18px;font-weight:700">沖繩那霸 → 台北桃園</div>
+                </div>
+                <span class="badge" style="background:#0f172a;color:#fff">CI123</span>
+              </div>
+              <div class="mini-grid">
+                <div class="mini">
+                  <div class="muted">出發</div>
+                  <div style="font-weight:700;margin-top:4px">2026/06/06 20:55</div>
+                  <div>那霸機場 T1</div>
+                </div>
+                <div class="mini">
+                  <div class="muted">抵達</div>
+                  <div style="font-weight:700;margin-top:4px">2026/06/06 21:30</div>
+                  <div>桃園機場 T2</div>
+                </div>
+              </div>
+              <div class="chips">
+                <span class="chip">⏱️ 1 小時 35 分</span>
+                <span class="chip">🧳 1PC</span>
+                <span class="chip">✅ 建議 18:45 - 19:00 抵達機場</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="card">
+            <h3 style="margin-top:0">住宿</h3>
+            <div style="font-size:22px;font-weight:800">THE NEST 那霸</div>
+            <div class="muted">第一晚與第二晚住宿</div>
+            <a class="map-btn" style="margin-top:16px" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=THE%20NEST%20Naha%20Okinawa">查看飯店地圖 ↗</a>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-top:0">旅行節奏建議</h3>
+            <ul class="clean muted">
+              <li>✈️ 第一天不要排太滿，重點放在市區輕鬆玩。</li>
+              <li>🚗 第二天北部拉車最久，建議早餐後盡快出發。</li>
+              <li>🌅 第三天南部收尾，再提早回機場還車最穩。</li>
+              <li>🗺️ 每個景點都可直接點開 Google Maps。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="day1" class="section hidden">
+      <div class="card">
+        <div class="day-head">
+          <div class="day-title">
+            <small>DAY1</small>
+            <h2>06/04 Thu</h2>
+          </div>
+          <div class="muted">抵達沖繩・市區逛街・燒肉晚餐</div>
+        </div>
+        <div class="note-bar">🚗 以市區移動為主，第一天節奏輕鬆｜以下交通時間為自駕抓的大約值，實際仍會受當天車流影響。</div>
+        <div class="timeline">
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">08:00</span><span class="type 交通">交通</span><div style="font-size:18px;font-weight:700;margin-top:6px">華航 CI120 起飛</div><div class="meta">桃園機場 T2 → 那霸機場 T1</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Taiwan%20Taoyuan%20International%20Airport%20Terminal%202">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag extra">✨ 10:45 抵達沖繩</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">11:30</span><span class="type 交通">交通</span><div style="font-size:18px;font-weight:700;margin-top:6px">租車取車</div><div class="meta">機場取車後正式開始自駕行程</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Naha%20Airport%20rent%20a%20car%20pickup">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 入境＋取車約 45 分</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">12:15</span><span class="type 美食">美食</span><div style="font-size:18px;font-weight:700;margin-top:6px">世界第一蘋果派</div><div class="meta">先吃點心墊胃</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Okinawa%20apple%20pie%20shop%20Naha">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 車程約 15 分</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">13:15</span><span class="type 購物">購物</span><div style="font-size:18px;font-weight:700;margin-top:6px">永旺夢樂城</div><div class="meta">逛街、補貨、休息</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=AEON%20MALL%20Okinawa%20Rycom">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 車程約 25 分</span><span class="tag stay">🕒 建議停留 2 小時</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">16:00</span><span class="type 住宿">住宿</span><div style="font-size:18px;font-weight:700;margin-top:6px">THE NEST Check-in</div><div class="meta">回飯店辦理入住、稍作休息</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=THE%20NEST%20Naha%20Okinawa">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 車程約 35 分</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">16:45</span><span class="type 景點">景點</span><div style="font-size:18px;font-weight:700;margin-top:6px">國際通</div><div class="meta">散步逛街、順便消磨晚餐前時間</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Kokusai%20Dori%20Naha">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 車程約 10 分 / 或步行視飯店位置</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">17:30</span><span class="type 預約">預約</span><div style="font-size:18px;font-weight:700;margin-top:6px">琉球的牛（那霸店）</div><div class="meta">已預約晚餐</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Ryukyu%20no%20Ushi%20Naha%20Kokusai%20Dori">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 國際通步行可達</span><span class="tag stay">🕒 建議用餐 1.5 小時</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">19:30</span><span class="type 購物">購物</span><div style="font-size:18px;font-weight:700;margin-top:6px">唐吉訶德</div><div class="meta">採買零食與伴手禮</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Don%20Quijote%20Kokusai%20Dori%20Naha">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 步行約 5 - 10 分</span></div>
+          </div></div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="day2" class="section hidden">
+      <div class="card">
+        <div class="day-head">
+          <div class="day-title">
+            <small>DAY2</small>
+            <h2>06/05 Fri</h2>
+          </div>
+          <div class="muted">北部海景・水族館・美國村</div>
+        </div>
+        <div class="note-bar">🚗 北上行程較長，建議早點出發｜以下交通時間為自駕抓的大約值，實際仍會受當天車流影響。</div>
+        <div class="timeline">
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">08:00</span><span class="type 美食">美食</span><div style="font-size:18px;font-weight:700;margin-top:6px">福助玉子燒</div><div class="meta">早餐</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Fukusuke%20no%20Tamagoyaki%20Naha">Google Maps ↗</a></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">09:30</span><span class="type 順遊">順遊</span><div style="font-size:18px;font-weight:700;margin-top:6px">許田休息站</div><div class="meta">北上途中休息、補給</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Michi-no-Eki%20Kyoda%20Okinawa">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 車程約 1 小時 20 分</span><span class="tag stay">🕒 建議停留 20 分</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">10:15</span><span class="type 景點">景點</span><div style="font-size:18px;font-weight:700;margin-top:6px">古宇利島</div><div class="meta">看海、拍照、過橋兜風</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Kouri%20Island%20Okinawa">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 車程約 35 分</span><span class="tag stay">🕒 建議停留 45 分</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">11:15</span><span class="type 美食">美食</span><div style="font-size:18px;font-weight:700;margin-top:6px">蝦蝦飯</div><div class="meta">古宇利島人氣美食</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Kouri%20Shrimp%20Okinawa">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 島上移動約 5 - 10 分</span><span class="tag stay">🕒 建議用餐 45 分</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">12:30</span><span class="type 景點">景點</span><div style="font-size:18px;font-weight:700;margin-top:6px">美麗海水族館</div><div class="meta">第二天重點行程</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Okinawa%20Churaumi%20Aquarium">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 車程約 35 分</span><span class="tag stay">🕒 建議停留 2.5 - 3 小時</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">16:00</span><span class="type 彈性">彈性</span><div style="font-size:18px;font-weight:700;margin-top:6px">恩納海濱公園（時間允許再去）</div><div class="meta">可彈性安排的海邊點</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Onna%20Seaside%20Park%20Nabee%20Beach">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 車程約 50 分</span><span class="tag stay">🕒 建議停留 30 分</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">17:30</span><span class="type 景點">景點</span><div style="font-size:18px;font-weight:700;margin-top:6px">美國村</div><div class="meta">海邊散步與逛街</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=American%20Village%20Okinawa">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 車程約 35 - 45 分</span><span class="tag stay">🕒 建議停留 1 - 1.5 小時</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">18:30</span><span class="type 美食">美食</span><div style="font-size:18px;font-weight:700;margin-top:6px">A&W 美濱店</div><div class="meta">沖繩在地速食</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=A%26W%20Mihama%20Okinawa">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 美國村周邊步行可達</span><span class="tag stay">🕒 建議用餐 45 分</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">20:00</span><span class="type 美食">美食</span><div style="font-size:18px;font-weight:700;margin-top:6px">Local Cuisine KOKO</div><div class="meta">飯店附近餐酒館，若還吃得下可小酌</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Local%20Cuisine%20KOKO%20Naha">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 回那霸車程約 40 - 50 分</span></div>
+          </div></div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="day3" class="section hidden">
+      <div class="card">
+        <div class="day-head">
+          <div class="day-title">
+            <small>DAY3</small>
+            <h2>06/06 Sat</h2>
+          </div>
+          <div class="muted">市場散步・瀨長島・返程</div>
+        </div>
+        <div class="note-bar">🚗 最後一天以南部與那霸市區收尾｜以下交通時間為自駕抓的大約值，實際仍會受當天車流影響。</div>
+        <div class="timeline">
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">08:30</span><span class="type 景點">景點</span><div style="font-size:18px;font-weight:700;margin-top:6px">牧志市場</div><div class="meta">市場散步與早餐</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Makishi%20Public%20Market%20Naha">Google Maps ↗</a></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">10:30</span><span class="type 景點">景點</span><div style="font-size:18px;font-weight:700;margin-top:6px">瀨長島</div><div class="meta">海景散步</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Senagajima%20Okinawa">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 車程約 20 分</span><span class="tag stay">🕒 建議停留 45 分</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">11:15</span><span class="type 美食">美食</span><div style="font-size:18px;font-weight:700;margin-top:6px">幸福鬆餅</div><div class="meta">瀨長島人氣甜點</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Happiness%20Pancake%20Senagajima">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 島上步行可達</span><span class="tag stay">🕒 建議用餐 60 分</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">13:00</span><span class="type 景點">景點</span><div style="font-size:18px;font-weight:700;margin-top:6px">奧武島</div><div class="meta">可安排天婦羅或海邊走走</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Ojima%20Island%20Okinawa">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 車程約 35 分</span><span class="tag stay">🕒 建議停留 45 分</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">15:00</span><span class="type 美食">美食</span><div style="font-size:18px;font-weight:700;margin-top:6px">傑克牛排館</div><div class="meta">回那霸市區用餐</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Jack%27s%20Steak%20House%20Naha">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 車程約 35 分</span><span class="tag stay">🕒 建議用餐 60 分</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">16:30</span><span class="type 景點">景點</span><div style="font-size:18px;font-weight:700;margin-top:6px">波上宮</div><div class="meta">沖繩代表神社</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Naminoue%20Shrine%20Naha">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 車程約 10 分</span><span class="tag stay">🕒 建議停留 30 分</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">17:10</span><span class="type 景點">景點</span><div style="font-size:18px;font-weight:700;margin-top:6px">波之上海灘</div><div class="meta">看海放鬆，幫旅程收尾</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Naminoue%20Beach%20Naha">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 步行約 5 分</span><span class="tag stay">🕒 建議停留 30 分</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">18:30</span><span class="type 交通">交通</span><div style="font-size:18px;font-weight:700;margin-top:6px">前往那霸機場</div><div class="meta">還車、辦理報到</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Naha%20Airport%20Terminal%201">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag drive">🚘 車程約 15 分</span></div>
+          </div></div>
+
+          <div class="item"><div class="dot"></div><div class="item-card">
+            <div class="row"><div><span class="time">20:55</span><span class="type 交通">交通</span><div style="font-size:18px;font-weight:700;margin-top:6px">華航 CI123 起飛</div><div class="meta">那霸機場 T1 → 桃園機場 T2</div></div><a class="map-btn" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Naha%20Airport%20Terminal%201">Google Maps ↗</a></div>
+            <div class="tags"><span class="tag extra">✨ 21:30 抵達台灣</span></div>
+          </div></div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.section');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => s.classList.add('hidden'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.target).classList.remove('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
